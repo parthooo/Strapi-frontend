@@ -39,9 +39,6 @@ const LoginRedirect = (props) => {
 
   return <>
     <p>{text}</p>
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
   </>
 };
 

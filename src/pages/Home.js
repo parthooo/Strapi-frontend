@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-expressions */
 import React, { useState } from 'react';
-import Articl from './Articl';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -11,11 +9,7 @@ const providersNames = [
 const LoginButton = (props) => <a href={`${backendUrl}/api/connect/${props.providerName}`}>
   <button className="text-3xl font-bold underline
     ">Connect to {props.providerName}</button>
-</a>; 
-
-// console.log("test", window.location.href);
-
-
+</a>;
 
 const LogoutButton = (props) => <button onClick={props.onClick}>Logout</button>;
 
@@ -48,14 +42,15 @@ const Home = (props) => {
   } else {
     text = 'You are not connected. Please log in.';
   }
-  // if( window.location.href !== "http://localhost:3000/"){
-  //   console.log("test");
-  //   return <Articl></Articl>
-  // }
-  return <div>
-    <p>{text}</p>
-    {buttons}
-  </div>;
+
+  return (
+    <div className='flex items-center'>
+      <div className="max-w-[1240px] mx-auto">
+        <p>{text}</p>
+        {buttons}
+      </div>
+    </div>
+  )
 }
 
 export default Home;
