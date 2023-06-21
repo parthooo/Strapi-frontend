@@ -1,6 +1,8 @@
-import Navbar from "./Navbar";
-import Blogs from "./Blogs";
+import Navbar from "./navbar/Navbar";
+import Blogs from "./blogs/Blogs";
+import Footer from "./footer/Footer";
 export {
     Navbar,
-    Blogs
+    Blogs,
+    Footer
 }

@@ -8,8 +8,7 @@ import Home from './pages/Home';
 // import LoginRedirect from './pages/LoginRedirect';
 import Article from "./pages/Article";
 import './index.css';
-import Navbar from "./components/navbar/Navbar";
-import Blogs from "./components/blogs/Blogs";
+import { Navbar, Blogs, Footer } from "./components";
 
 const App = () => {
   if (!process.env.REACT_APP_BACKEND_URL) {
@@ -32,6 +31,7 @@ const App = () => {
           <Route exact path="/article" component={Article} />
 
         </Switch>
+        <Footer />
       </Router>
     </div>
   );
