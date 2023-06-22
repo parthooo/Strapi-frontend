@@ -4,7 +4,7 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const LoginRedirect = (props) => {
-  console.log(props);
+  console.log("pp", props);
   const [text, setText] = useState('Loading...');
   const location = useLocation();
   const params = useParams();
@@ -29,7 +29,7 @@ const LoginRedirect = (props) => {
         localStorage.setItem('jwt', res.jwt);
         localStorage.setItem('username', res.user.username);
         setText('You have been successfully logged in. You will be redirected in a few seconds...');
-        setTimeout(() => history.push('/'), 3000); // Redirect to homepage after 3 sec
+        setTimeout(() => history.push('/article'), 3000); // Redirect to homepage after 3 sec
       })
       .catch(err => {
         console.log("bhai",err);
