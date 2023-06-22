@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, useParams } from "react-router-dom";
+import Loader from '../components/Loader';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const LoginRedirect = (props) => {
-  console.log("pp", props);
-  const [text, setText] = useState('Loading...');
+  const [text, setText] = useState();
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const params = useParams();
   const history = useHistory();
@@ -13,6 +14,7 @@ const LoginRedirect = (props) => {
   useEffect(() => {
     // Successfully logged with the provider
     // Now logging with strapi by using the access_token (given by the provider) in props.location.search
+    setLoading(true);
     fetch(`${backendUrl}/api/auth/${params.providerName}/callback${location.search}`)
       .then(res => {
         if (res.status !== 200) {
@@ -29,16 +31,28 @@ const LoginRedirect = (props) => {
         localStorage.setItem('jwt', res.jwt);
         localStorage.setItem('username', res.user.username);
         setText('You have been successfully logged in. You will be redirected in a few seconds...');
-        setTimeout(() => history.push('/article'), 3000); // Redirect to homepage after 3 sec
+        setTimeout(() => history.push('/article'), 1000);
+        setLoading(true); // Redirect to homepage after 3 sec
       })
       .catch(err => {
         console.log("bhai",err);
         setText('An error occurred, please see the developer console.')
+        setLoading(true);
       });
   }, [history, location.search, params.providerName]);
 
   return <>
-    <p>{text}</p>
+
+<div>
+    {loading ? (
+      <Loader /> // Replace Loader with your loader component
+    ) : (
+      // Render the content when data is not loading
+      <p>{text}</p>
+    )}
+  </div>
+
+    
   </>
 };
 

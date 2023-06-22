@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../../assets/logo.png'
 import './Navbar.css'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -15,12 +16,14 @@ const LoginButton = (props) => <a href={`${backendUrl}/api/connect/${props.provi
 const LogoutButton = (props) => <button onClick={props.onClick}>Logout</button>;
 
 const Navbar = () => {
+  const history = useHistory();
     const [isLogged, setIsLogged] = useState(!!localStorage.getItem('jwt'));
 
   const logout = (e) => {
     e.preventDefault();
     localStorage.clear()
     setIsLogged(false);
+    history.push('/')
   };
 
   let buttons;
