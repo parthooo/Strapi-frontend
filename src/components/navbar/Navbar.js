@@ -38,13 +38,14 @@ const Navbar = () => {
     </ul>;
   }
 
-  let text;
+  // let text;
 
-  if (isLogged) {
-    text = `Welcome ${localStorage.getItem('username')}, you are connected! `;
-  } else {
-    text = 'You are not connected. Please log in.';
-  }
+  // if (isLogged) {
+  //   text = `Welcome ${localStorage.getItem('username')}, you are connected! `;
+  // } 
+  // else {
+  //   text = 'You are not connected. Please log in.';
+  // }
   return (
     <div className='w-full h-[80px] z-10 bg-white drop-shadow-lg relative'>
         <div className='flex justify-between items-center w-full h-full md:max-w-[1240px] m-auto'>

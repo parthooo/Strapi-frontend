@@ -7,7 +7,7 @@ import {
 import Home from './pages/Home';
 import Article from "./pages/Article";
 import './index.css';
-import { Footer, Navbar } from "./components";
+import { Footer } from "./components";
 import BlogContentPage from "./pages/BlogContentPage";
 import useFetch from "./hooks/useFetch";
 import LoginRedirect from "./pages/LoginRedirect";
