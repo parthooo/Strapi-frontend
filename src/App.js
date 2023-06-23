@@ -5,18 +5,13 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './pages/Home';
-import Article from "./pages/Article";
+import BlogsLandingPage from "./pages/BlogsLandingPage";
 import './index.css';
 import { Footer } from "./components";
 import BlogContentPage from "./pages/BlogContentPage";
-import useFetch from "./hooks/useFetch";
 import LoginRedirect from "./pages/LoginRedirect";
 
 const App = () => {
-  let { loading, data, error } = useFetch('http://localhost:1337/api/blogs?populate=*')
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!</p>
-
   if (!process.env.REACT_APP_BACKEND_URL) {
     return <p>
       Please specify your backend url with the <a href="https://create-react-app.dev/docs/adding-custom-environment-variables/" target="_blank" rel="noopener noreferrer">environment variable</a>:<br />
@@ -27,18 +22,17 @@ const App = () => {
     </p>;
   }
 
-
   return (
     <div>
       <Router>
         <Switch>
           <Route exact path="/connect/:providerName/redirect" component={LoginRedirect} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/article" component={Article} element={<Article blogs={data} />} />
+          <Route exact path="/" component={Home} mushfiq="mushfiq" />
+          <Route exact path="/blogs" component={BlogsLandingPage} />
           <Route exact path="/blog/:id" component={BlogContentPage} />
         </Switch>
-        <Footer />
       </Router>
+      <Footer />
     </div>
   );
 }

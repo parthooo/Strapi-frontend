@@ -20,39 +20,33 @@ const LoginRedirect = (props) => {
         if (res.status !== 200) {
           throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
         }
-        console.log("test",res);
         return res;
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         // Successfully logged with Strapi
         // Now saving the jwt to use it for future authenticated requests to Strapi
         localStorage.setItem('jwt', res.jwt);
         localStorage.setItem('username', res.user.username);
         setText('You have been successfully logged in. You will be redirected in a few seconds...');
-        setTimeout(() => history.push('/article'), 1000);
+        setTimeout(() => history.push('/blogs'), 1000);
         setLoading(true); // Redirect to homepage after 3 sec
       })
       .catch(err => {
-        console.log("bhai",err);
         setText('An error occurred, please see the developer console.')
         setLoading(true);
       });
   }, [history, location.search, params.providerName]);
 
   return <>
-
-<div>
-    {loading ? (
-      <Loader /> // Replace Loader with your loader component
-    ) : (
-      // Render the content when data is not loading
-      <p>{text}</p>
-    )}
-  </div>
-
-    
+    <div>
+      {loading ? (
+        <Loader /> // Replace Loader with your loader component
+      ) : (
+        // Render the content when data is not loading
+        <p>{text}</p>
+      )}
+    </div>
   </>
 };
 

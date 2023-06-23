@@ -1,10 +1,9 @@
 import React from 'react';
-import Navbar from '../components/navbar/Navbar';
+import { Navbar } from '../components';
 
+const Home = ({mush}) => {
 
-const Home = (props) => {
-
-
+console.log("test",mush);
   return (
     <>
       <Navbar />
